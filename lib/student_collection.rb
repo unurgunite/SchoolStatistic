@@ -1,4 +1,6 @@
-class StudentCollection
+# frozen_string_literal: true
+
+class StudentCollection # :nodoc:
   def initialize(array_students)
     @data = array_students
   end
@@ -9,7 +11,7 @@ class StudentCollection
   end
 
   def print_avg_scores
-    average_scores.reduce("") { |str, (k, v)| str << "#{k}: #{v}, "}.delete_suffix(', ')
+    average_scores.reduce('') { |str, (k, v)| str << "#{k}: #{v}, " }.delete_suffix(', ')
   end
 
   private
@@ -21,7 +23,7 @@ class StudentCollection
   end
 
   def average_scores
-    self.subjects.each_with_object(Hash.new) do |subject, hash|
+    subjects.each_with_object({}) do |subject, hash|
       total_scores = @data.inject(0) { |sum, student| sum + student.evaluations[subject].to_i }
       avg_scores = (total_scores.to_f / @data.size).round(1)
       hash[subject] = avg_scores
