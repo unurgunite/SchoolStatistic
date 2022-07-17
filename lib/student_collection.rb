@@ -8,16 +8,8 @@ class StudentCollection
     percent.round(1)
   end
 
-  def average_scores
-    result = String.new
-
-    self.subjects.map do |subject|
-      total_scores = @data.inject(0) { |sum, student| sum + student.evaluations[subject].to_i }
-      avg_scores = (total_scores.to_f / @data.size).round(1)
-      result << "#{subject}: #{avg_scores}, "
-    end
-
-    result.delete_suffix(', ')
+  def print_avg_scores
+    average_scores.reduce("") { |str, (k, v)| str << "#{k}: #{v}, "}.delete_suffix(', ')
   end
 
   private
@@ -26,5 +18,13 @@ class StudentCollection
     @data.each_with_object([]) do |student, arr|
       arr << student.evaluations.keys
     end.uniq.flatten
+  end
+
+  def average_scores
+    self.subjects.each_with_object(Hash.new) do |subject, hash|
+      total_scores = @data.inject(0) { |sum, student| sum + student.evaluations[subject].to_i }
+      avg_scores = (total_scores.to_f / @data.size).round(1)
+      hash[subject] = avg_scores
+    end
   end
 end

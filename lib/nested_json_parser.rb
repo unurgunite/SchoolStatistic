@@ -9,7 +9,5 @@ class NestedJsonParser < JsonParser
     end
 
     result = students.map { |arr| Student.new(arr[0], arr[1])}
-
-    result
   end
 end

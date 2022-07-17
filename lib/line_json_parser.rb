@@ -15,6 +15,6 @@ class LineJsonParser < JsonParser
       Student.new(name, evaluations)
     end
 
-    return students
+    students
   end
 end
