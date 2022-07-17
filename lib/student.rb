@@ -1,4 +1,6 @@
-class Student
+# frozen_string_literal: true
+
+class Student # :nodoc:
   attr_reader :name, :evaluations
 
   def initialize(name, evaluations)

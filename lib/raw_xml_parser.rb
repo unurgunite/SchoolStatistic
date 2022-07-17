@@ -1,12 +1,13 @@
-include REXML
+# frozen_string_literal: true
 
-class RawXmlParser
+class RawXmlParser # :nodoc:
+  include REXML
+
   ABBREVIATION = {
-    'math': 'mathematics',
-    'rus': 'russian_language',
-    'phys': 'physics'
+    math: 'mathematics',
+    rus: 'russian_language',
+    phys: 'physics'
   }.freeze
-
 
   def initialize(path)
     @data = Document.new(File.open(path))
@@ -24,12 +25,12 @@ class RawXmlParser
 
         score = grade.elements['score'].text
 
-        scores.merge!({full_subject => score.to_i})
+        scores.merge!({ full_subject: score.to_i })
       end
 
       students << Student.new(name, scores)
     end
-    
+
     students
   end
 end
