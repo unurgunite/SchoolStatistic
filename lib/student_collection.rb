@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 class StudentCollection # :nodoc:
   def initialize(array_students)
